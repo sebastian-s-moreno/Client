@@ -1,0 +1,46 @@
+﻿@page
+@model Forte.Weather.Client.Pages.LocationsModel
+@{
+}
+
+<div class="text-center">
+    <h1 class="display-4">Locations</h1>
+    <div class="form-horizontal">
+        <hr />
+        <div class="form-group">
+            <table class="table table-responsive" style="width:400px">
+                <tr>
+                    <th>Location</th>
+                    <th>Longitude</th>
+                    <th>Latitude</th>
+                </tr>
+                @foreach (var item in Model.Locations) {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Longitude)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Latitude)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+
+    <form method="post">
+        Name:
+        <input asp-for="Input.Name" />
+        <br />
+        Latitude:
+        <input asp-for="Input.Latitude" />
+        <br />
+        Longitude:
+        <input asp-for="Input.Longitude" />
+        <br />
+        <input type="submit" />
+    </form>
+</div>

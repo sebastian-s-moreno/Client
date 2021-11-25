@@ -1,0 +1,32 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+
+<div class="text-center">
+    <h1 class="display-4">Get recommendations</h1>
+    <a id="getstuff" class="btn btn-sm btn-primary"> Get recommendation </a>
+
+    <p id="text1" style="visibility: hidden">Recommended location today: </p>
+    <p id="text2" style="visibility: hidden"/>
+</div>
+
+@section scripts{
+    <script>
+        document.getElementById('getstuff').addEventListener('click', () => {
+            $.ajax({
+              url: "https://localhost:7179/api/weather/locations/recommended",
+              success: (response) => {
+                  console.log(response);
+                  document.getElementById('text1').style.visibility = "visible";
+                  var text2 = document.getElementById('text2');
+                  text2.style.visibility = "visible";
+                  text2.innerHTML = response.name;
+              }
+            });
+            console.log("Test1");
+        });
+    </script>
+}
