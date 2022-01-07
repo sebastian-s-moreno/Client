@@ -1,0 +1,37 @@
+trigger:
+  branches:
+    include:
+      - master
+
+pool:
+  vmImage: "windows-latest"
+
+stages: 
+- stage: BuildAndTest
+  displayName: 'Build and test'
+  jobs: 
+  - job: BuildAndTest
+    displayName: 'Build and test'
+    steps:
+    - task: DotNetCoreCLI@2
+      displayName: "Restore packages"
+      inputs:
+        command: restore
+        selectOrConfig: "config"
+        nugetConfigPath: "NuGet.Config"
+        projects: "**/*.csproj"
+
+    - task: DotNetCoreCLI@2
+      displayName: Build
+      inputs:
+        command: build
+        projects: "**/*.csproj"
+        arguments: "--no-restore --configuration $(buildConfiguration)"
+
+    - task: DotNetCoreCLI@2
+      displayName: Run tests
+      inputs:
+        command: test
+        projects: "$(projectFolder)/**/*Tests.csproj"
+        arguments: '--configuration $(buildConfiguration)'
+

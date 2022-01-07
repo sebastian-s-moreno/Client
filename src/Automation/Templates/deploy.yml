@@ -1,0 +1,21 @@
+parameters:
+  environment: ''
+
+stages:
+- stage: ${{ parameters.environment }}
+  jobs: 
+  - deployment: 'Deploy'
+    pool: 'windows-latest'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - download: none
+
+          - task: DownloadPipelineArtifacts@1
+
+          - task: AzureResourceManagerTemplateDeployment@3
+          
+          #task for å deploye til app service
+
+  #job for å kjøre UI tester på deployed app service, evt. ha med rollback ved feil hvis det ikke blir for komplisert
