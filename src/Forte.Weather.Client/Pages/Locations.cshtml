@@ -73,3 +73,27 @@
     </div>
 </div>
 
+
+<div class="modal fade" tabindex="-1" role="dialog" id="detailsModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Location Weather Details: </h5>
+            </div>
+            <div class="modal-body"></div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $(function () {
+            $('button.details').on('click', function () {
+                $('.modal-body').load(`/Locations/LocationDetails?lat=${$(this).data('lon')}&lon=${$(this).data('lat')}`);
+                $('.modal-title').text("Location Weather Details: " + $(this).data('city'));
+                $('#detailsModal').modal('show');
+            });
+        });
+    </script>
+}
+
