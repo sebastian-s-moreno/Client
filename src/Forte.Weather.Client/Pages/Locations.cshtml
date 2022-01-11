@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "{handler?}"
 @model Forte.Weather.Client.Pages.LocationsModel
 @{
 }
@@ -25,9 +25,23 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.Latitude)
                         </td>
+                        <td>
+                            <button class="btn btn-sm btn-dark details" data-id="@item.ID" data-city="@item.Name" data-lon="@item.Longitude" data-lat="@item.Latitude" data-toggle="modal" data-target="#detailsModal">Details</button>
+                        </td>
                     </tr>
                 }
             </table>
+        </div>
+    </div>
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="detailsModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Location Weather Details: </h5>
+                </div>
+                <div class="modal-body"></div>
+            </div>
         </div>
     </div>
 
@@ -36,11 +50,26 @@
         <input asp-for="Input.Name" />
         <br />
         Latitude:
-        <input asp-for="Input.Latitude" />
+        <input asp-for="Input.Latitude" required/>
         <br />
         Longitude:
-        <input asp-for="Input.Longitude" />
+        <input asp-for="Input.Longitude" required/>
         <br />
         <input type="submit" />
     </form>
 </div>
+
+
+
+
+@section scripts{
+    <script>
+        $(function () {
+            $('button.details').on('click', function () {
+                $('.modal-body').load(`/Locations/LocationDetails?lat=${$(this).data('lon')}&lon=${$(this).data('lat')}`);
+                $('.modal-title').text("Location Weather Details: " + $(this).data('city'));
+                $('#detailsModal').modal('show');
+            });
+        });
+    </script>
+}

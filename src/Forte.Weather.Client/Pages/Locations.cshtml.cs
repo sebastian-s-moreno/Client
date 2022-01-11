@@ -1,3 +1,4 @@
+using Forte.Weather.Client.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -6,22 +7,32 @@ namespace Forte.Weather.Client.Pages
     public class LocationsModel : PageModel
     {
         [BindProperty]
-        public LocationModel Input { get; set; }
-        public List<LocationModel> Locations { get; set; }
+        public Location Input { get; set; }
+        public List<Location> Locations { get; set; }
 
         public LocationsModel()
         {
-            Locations = new List<LocationModel>();
-            Input = new LocationModel();
+            Locations = new List<Location>();
+            Input = new Location();
         }
 
         public async Task OnGetAsync()
         {
             using (var client = new HttpClient())
             {
-                var response = await client.GetFromJsonAsync<List<LocationModel>>("https://localhost:7179/api/weather/locations");
+                var response = await client.GetFromJsonAsync<List<Location>>("https://localhost:7179/api/weather/locations");
                 Locations = response;
             }
+        }
+        public async Task<PartialViewResult> OnGetLocationDetailsAsync(double lon, double lat)
+        {
+            var elements = $"lat={lat}&lon={lon}";
+            using (var client = new HttpClient())
+            {
+                var response = await client.GetFromJsonAsync<LocationDetails>("https://localhost:7179/api/weather/details?"+elements);
+                return Partial("_LocationDetails", response);
+            }
+            
         }
 
         public async Task<RedirectResult> OnPostAsync()
@@ -36,10 +47,14 @@ namespace Forte.Weather.Client.Pages
         
     }
 
-    public class LocationModel
+    public class Location
     {
         public string? Name { get; set; }
+        public int ID { get; set; }
         public string? Latitude { get; set; }
         public string? Longitude { get; set; }
     }
+
+
+
 }
