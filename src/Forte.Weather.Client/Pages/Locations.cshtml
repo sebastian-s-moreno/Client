@@ -1,46 +1,72 @@
 ﻿@page
 @model Forte.Weather.Client.Pages.LocationsModel
 @{
-}
+}   
 
 <div class="text-center">
-    <h1 class="display-4">Locations</h1>
-    <div class="form-horizontal">
-        <hr />
-        <div class="form-group">
-            <table class="table table-responsive" style="width:400px">
-                <tr>
-                    <th>Location</th>
-                    <th>Longitude</th>
-                    <th>Latitude</th>
-                </tr>
-                @foreach (var item in Model.Locations) {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Longitude)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Latitude)
-                        </td>
-                    </tr>
-                }
-            </table>
+    <div style="display: flex; justify-content: center; align-items: center;">
+        <h1 class="display-4" style=" display: inline-block">Locations</h1>
+        <img src="https://cdn0.iconfinder.com/data/icons/octicons/1024/globe-512.png" style=" max-width:7%; height: auto;"/>
+    </div>
+    <hr />
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col" style="border: 1px solid red;">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <table class="table table-responsive" style="width:600px;">
+                            <tr>
+                                <th>Location</th>
+                                <th>Latitude</th>
+                                <th>Longitude</th>
+                            </tr>
+                        @foreach (var item in Model.Locations)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Latitude)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Longitude)
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-4" style="border: 1px solid red;">
+            <div class="container">
+                <form method="post">
+                    <div class="row justify-content-center">
+                        <div class="col-8">
+                            <h4>Add location</h4>
+                            <label for="name"> Name: </label>
+                            <input class="form-control" asp-for="Input.Name" id="name" maxlength="20" />
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-4">
+                            <label> Latitude: </label>
+                            <input class="form-control" asp-for="Input.Latitude" id="lat" type="number" min="-90" max="90" step=0.01 required />
+                        </div>
+                        <div class="col-4">
+                            <label> Longitude: </label>
+                            <td><input class="form-control" asp-for="Input.Longitude" id="long" type="number" min="-180" max="80" step=0.01 required /></td>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-dark">Submit</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-
-    <form method="post">
-        Name:
-        <input asp-for="Input.Name" />
-        <br />
-        Latitude:
-        <input asp-for="Input.Latitude" />
-        <br />
-        Longitude:
-        <input asp-for="Input.Longitude" />
-        <br />
-        <input type="submit" />
-    </form>
 </div>
+
