@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "{handler?}"
 @model Forte.Weather.Client.Pages.LocationsModel
 @{
 }   
@@ -34,6 +34,9 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Longitude)
                                 </td>
+                                <td>
+                            <button class="btn btn-sm btn-dark details" data-id="@item.ID" data-city="@item.Name" data-lon="@item.Longitude" data-lat="@item.Latitude" data-toggle="modal" data-target="#detailsModal">Details</button>
+                        </td>
                             </tr>
                         }
                     </table>
