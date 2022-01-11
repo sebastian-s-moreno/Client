@@ -1,7 +1,7 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Recommendation page";
 }
 
 
@@ -12,6 +12,14 @@
     <p id="text1" style="visibility: hidden">Recommended location today: </p>
     <p id="text2" style="visibility: hidden"/>
 </div>
+
+<form method="post" id="recommendation-form">
+    @foreach (var activity in Model.Activities)
+    {
+        <input type="radio" asp-for="Activity" value="@activity" />@activity<br />
+    }
+</form>
+<button class="btn btn-primary" type="submit" form="recommendation-form" value="Submit">Get recommendation</button>
 
 @section scripts{
     <script>
