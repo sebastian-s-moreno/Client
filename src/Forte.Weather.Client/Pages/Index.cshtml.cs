@@ -8,7 +8,7 @@ namespace Forte.Weather.Client.Pages
         private readonly ILogger<IndexModel> _logger;
         [BindProperty]
         public string? Activity { get; set; }
-        public string[] Activities = new[] { "Bading", "Skiing", "Sailing", "Sightseeing", "Unspecified" };
+        public string[] Activities = new[] { "Swimming", "Skiing", "Sailing", "Sightseeing", "Unspecified" };
 
     public IndexModel(ILogger<IndexModel> logger)
         {

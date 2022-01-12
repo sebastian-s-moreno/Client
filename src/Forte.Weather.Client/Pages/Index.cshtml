@@ -6,21 +6,32 @@
 
 
 <div class="text-center">
-    <h1 class="display-4">Get recommendations</h1>
-    <a id="getstuff" class="btn btn-sm btn-primary"> Get recommendation </a>
-
+    <h1 class="display-4" style="margin-bottom:10%">Get recommendations</h1>
+    @*<a id="getstuff" class="btn btn-sm btn-primary"> Get recommendation </a>
     <p id="text1" style="visibility: hidden">Recommended location today: </p>
-    <p id="text2" style="visibility: hidden"/>
-</div>
+    <p id="text2" style="visibility: hidden"/>*@
+
 
 <form method="post" id="recommendation-form">
+    <div class="row">
     @foreach (var activity in Model.Activities)
     {
-        <input type="radio" asp-for="Activity" value="@activity" />@activity<br />
+        <div class="col">
+        <div class="button">
+            <label for="@activity">
+                <input type="radio" asp-for="Activity" id="@activity" value="@activity" style="margin-right:5%;margin-bottom:10%;vertical-align: baseline"/>@activity<br/>
+                <img src="~/images/@(activity).png" width="150" height="180" id="image-@activity">
+            </label>
+        </div>
+        </div>
     }
+        </div>
 </form>
-<button class="btn btn-primary" type="submit" form="recommendation-form" value="Submit">Get recommendation</button>
+<row>
+    <button class="btn btn-primary" type="submit" form="recommendation-form" value="Submit" style="margin-top:5%">Get recommendation</button>
+</row>
 
+</div>
 @section scripts{
     <script>
         document.getElementById('getstuff').addEventListener('click', () => {
