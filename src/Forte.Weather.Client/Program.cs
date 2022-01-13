@@ -1,7 +1,12 @@
 var builder = WebApplication.CreateBuilder(args);
 
+
+builder.Services.Configure<RequestLocalizationOptions>(options =>
+{
+    options.SetDefaultCulture("en-Us");
+});
 // Add services to the container.
-builder.Services.AddRazorPages();
+builder.Services.AddRazorPages().AddViewLocalization();
 
 var app = builder.Build();
 

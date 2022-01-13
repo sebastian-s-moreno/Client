@@ -1,5 +1,6 @@
 ﻿@model Forte.Weather.Client.Models.LocationDetails
- 
+
+
 @*<div>
     <span class="d-inline-block">Name:</span><span>@Model.Data.Instant.Details.Name</span>
 </div>*@
@@ -7,21 +8,44 @@
     <span class="inline-block">Time: </span><span>@Model.Time</span>
 </div>
 <div>
-    <span class="inline-block">Air Pressure: </span><span>@Model.Data.Instant.Details.Air_pressure_at_sea_level</span>
+    <span class="inline-block">Air Pressure: </span><span>@Model.Data.Instant.Details.Air_pressure_at_sea_level hPa</span>
 </div>
 <div>
-    <span class="inline-block">Air Temperature: </span><span>@Model.Data.Instant.Details.Air_temperature</span>
+    <span class="inline-block">Air Temperature: </span><span id="air-temperature">@Model.Data.Instant.Details.Air_temperature&#8451</span>
 </div>
 <div>
-    <span class="inline-block">Relative Humidity: </span><span>@Model.Data.Instant.Details.Relative_humidity</span>
+    <span class="inline-block">Relative Humidity: </span><span>@Model.Data.Instant.Details.Relative_humidity%</span>
 </div>
 <div>
-    <span class="inline-block">Wind Direction: </span><span>@Model.Data.Instant.Details.Wind_from_direction</span>
+    <span class="inline-block">Wind Direction: </span><span>@Model.Data.Instant.Details.Wind_from_direction&deg;</span>
 </div>
 <div>
-    <span class="inline-block">Wind Speed: </span><span>@Model.Data.Instant.Details.Wind_speed</span>
+    <span class="inline-block">Wind Speed: </span><span>@Model.Data.Instant.Details.Wind_speed m/s</span>
 </div>
 <br/>
+
+
+<div class="form-check form-switch">
+  <input id="fahrenheitSwitch" class="form-check-input" type="checkbox" role="switch" >
+  <label class="form-check-label" for="fahrenheitSwitch">Fahrenheit</label>
+</div>
+
+
 <div>
     <span class="inline-block">See further weather details at <a href="https://www.yr.no">www.yr.no</a>!</span>
 </div>
+
+<script>
+    $(function() {
+        $('#fahrenheitSwitch').on('change', function (e) {
+            debugger;
+            var fahrenheit = (@Model.Data.Instant.Details.Air_temperature*1.8)+32;
+            if (e.target.checked){
+                $('#air-temperature').text(fahrenheit + " Fahrenheit");
+            }
+            else{
+                $('#air-temperature').text(@Model.Data.Instant.Details.Air_temperature + " Celcius");
+            }
+        });
+    });
+</script>
