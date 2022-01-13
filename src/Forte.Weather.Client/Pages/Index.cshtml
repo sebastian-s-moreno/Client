@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "{handler?}"
 @model IndexModel
 @{
     ViewData["Title"] = "Recommendation page";
@@ -13,13 +13,17 @@
     <p id="text2" style="visibility: hidden"/>
 </div>
 
-<form method="post" id="recommendation-form">
+<form id="recommendation-form">
     @foreach (var activity in Model.Activities)
     {
-        <input type="radio" asp-for="Activity" value="@activity" />@activity<br />
+        <input type="radio" name="activity" asp-for="Activity" value="@activity" />@activity<br />
     }
 </form>
-<button class="btn btn-primary" type="submit" form="recommendation-form" value="Submit">Get recommendation</button>
+<button class="btn btn-primary recommmendations" type="button" form="recommendation-form">Get recommendation</button>
+
+<div class="recommendation"></div>
+
+
 
 @section scripts{
     <script>
@@ -35,6 +39,14 @@
               }
             });
             console.log("Test1");
+        });
+    </script>
+
+   <script>
+        $(function () {
+            $('button.recommmendations').on('click', function () {
+                $('.recommendation').load(`/Index/RecommendedLocation?choice=${$('input[name="activity"]:checked').val()}`);
+            });
         });
     </script>
 }

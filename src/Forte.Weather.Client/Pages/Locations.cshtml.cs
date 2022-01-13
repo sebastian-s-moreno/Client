@@ -47,13 +47,6 @@ namespace Forte.Weather.Client.Pages
         
     }
 
-    public class Location
-    {
-        public string? Name { get; set; }
-        public int ID { get; set; }
-        public string? Latitude { get; set; }
-        public string? Longitude { get; set; }
-    }
 
 
 
