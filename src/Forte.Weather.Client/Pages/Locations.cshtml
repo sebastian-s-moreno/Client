@@ -18,6 +18,7 @@
                 <div class="form-group">
                     <table class="table table-responsive" style="width:600px;">
                             <tr>
+                                <th>ID</th>
                                 <th>Location</th>
                                 <th>Latitude</th>
                                 <th>Longitude</th>
@@ -25,6 +26,9 @@
                         @foreach (var item in Model.Locations)
                         {
                             <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ID)
+                                </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Name)
                                 </td>
