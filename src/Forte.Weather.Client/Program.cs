@@ -1,10 +1,22 @@
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.Extensions.Options;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.Configure<RequestLocalizationOptions>(options =>
 {
+    var supportedCultures = new[]
+    {
+        new CultureInfo("en"),
+    };
     options.SetDefaultCulture("en-Us");
+    options.SupportedCultures = supportedCultures;
+    options.SupportedUICultures = supportedCultures;
 });
+
 // Add services to the container.
 builder.Services.AddRazorPages().AddViewLocalization();
 
@@ -22,6 +34,9 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+var options = ((IApplicationBuilder)app).ApplicationServices.GetRequiredService<IOptions<RequestLocalizationOptions>>();
+app.UseRequestLocalization(options.Value);
 
 app.UseAuthorization();
 
