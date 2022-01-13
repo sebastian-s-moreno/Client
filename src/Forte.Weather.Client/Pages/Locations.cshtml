@@ -13,12 +13,11 @@
 
 <div class="container">
     <div class="row">
-        <div class="col" style="border: 1px solid red;">
+        <div class="col-7">
             <div class="form-horizontal">
                 <div class="form-group">
                     <table class="table table-responsive" style="width:600px;">
                             <tr>
-                                <th>ID</th>
                                 <th>Location</th>
                                 <th>Latitude</th>
                                 <th>Longitude</th>
@@ -26,9 +25,6 @@
                         @foreach (var item in Model.Locations)
                         {
                             <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.ID)
-                                </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Name)
                                 </td>
@@ -47,12 +43,20 @@
                 </div>
             </div>
         </div>
-        <div class="col-4" style="border: 1px solid red;">
+        <div class="col-1">
+        <div class="vl" style="border-left: 3px solid black; height: 300px;margin-left:50%"></div>
+        </div>
+        <div class="col-4">
             <div class="container">
                 <form method="post">
                     <div class="row justify-content-center">
                         <div class="col-8">
-                            <h4>Add new location</h4>
+                        <h4>Add new location: </h4>
+                        <span class="text-center" style="font-size: small">If you are unsure about the coordinates of your place, use: <a href="https://www.latlong.net">www.latlong.net</a>!</span>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-8">
                             <label for="name"> Name: </label>
                             <input class="form-control" asp-for="Input.Name" id="name" maxlength="20" />
                         </div>
@@ -76,6 +80,10 @@
         </div>
     </div>
 </div>
+<div>
+    <iframe width="970" height="506" src="https://www.youtube.com/embed/j91bBwp9UXs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
 
 
 <div class="modal fade" tabindex="-1" role="dialog" id="detailsModal">

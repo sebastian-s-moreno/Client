@@ -7,21 +7,42 @@
     <span class="inline-block">Time: </span><span>@Model.Time</span>
 </div>
 <div>
-    <span class="inline-block">Air Pressure: </span><span>@Model.Data.Instant.Details.Air_pressure_at_sea_level</span>
+    <span class="inline-block">Air Pressure: </span><span>@Model.Data.Instant.Details.Air_pressure_at_sea_level hPa</span>
 </div>
 <div>
-    <span class="inline-block">Air Temperature: </span><span>@Model.Data.Instant.Details.Air_temperature</span>
+    <span class="inline-block">Air Temperature: </span><span>@Model.Data.Instant.Details.Air_temperature Celcius</span>
 </div>
 <div>
-    <span class="inline-block">Relative Humidity: </span><span>@Model.Data.Instant.Details.Relative_humidity</span>
+    <span class="inline-block">Relative Humidity: </span><span>@Model.Data.Instant.Details.Relative_humidity %</span>
 </div>
 <div>
-    <span class="inline-block">Wind Direction: </span><span>@Model.Data.Instant.Details.Wind_from_direction</span>
+    <span class="inline-block">Wind Direction: </span><span>@Model.Data.Instant.Details.Wind_from_direction degrees</span>
 </div>
 <div>
-    <span class="inline-block">Wind Speed: </span><span>@Model.Data.Instant.Details.Wind_speed</span>
+    <span class="inline-block">Wind Speed: </span><span>@Model.Data.Instant.Details.Wind_speed m/s</span>
 </div>
 <br/>
+
+
+<div class="form-check form-switch">
+  <input class="form-check-input" type="checkbox" role="switch" id="fahrenheitSwitch">
+  <label class="form-check-label" for="flexSwitchCheckDefault">Fahrenheit</label>
+</div>
+
+
 <div>
     <span class="inline-block">See further weather details at <a href="https://www.yr.no">www.yr.no</a>!</span>
 </div>
+
+
+@section scripts{
+    <script>
+        $(function () {
+            $('button.details').on('click', function () {
+                $('.modal-body').load(`/Locations/LocationDetails?lat=${$(this).data('lon')}&lon=${$(this).data('lat')}`);
+                $('.modal-title').text("Location Weather Details: " + $(this).data('city'));
+                $('#detailsModal').modal('show');
+            });
+        });
+    </script>
+}

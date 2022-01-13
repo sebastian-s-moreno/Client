@@ -29,7 +29,7 @@ namespace Forte.Weather.Client.Pages
             var elements = $"lat={lat}&lon={lon}";
             using (var client = new HttpClient())
             {
-                var response = await client.GetFromJsonAsync<LocationDetails>("https://localhost:7179/api/weatherlocations/locations/details?" + elements);
+                var response = await client.GetFromJsonAsync<LocationDetails>("https://localhost:7179/api/weather/locations/details?" + elements);
                 return Partial("_LocationDetails", response);
             }
             
