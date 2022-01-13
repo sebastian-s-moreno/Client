@@ -22,14 +22,23 @@ namespace Forte.Weather.Client.Pages
             var elements = $"preference={choice}";
             using (var client = new HttpClient())
             {
-                location = await client.GetFromJsonAsync<Location>("https://localhost:7179/api/weather/locations/recommended2?" + elements);
+                try
+                {
+                    location = await client.GetFromJsonAsync<Location>("https://localhost:7179/api/weather/locations/recommended2?" + elements);
+                }
+                catch
+                {
+                    location = null;
+                }
             }
             if (location != null)
             {
                 return Partial("_RecommendedLocation", location);
             }
-            else { 
-                return null; //Returner feilmelding og si at man må legge til locations
+            else {
+                Error err = new Error();
+                err.Message = "There are no locations in the database";
+                return Partial("_Error", err); //Returner feilmelding og si at man må legge til locations
             }
 
         }
