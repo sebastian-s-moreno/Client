@@ -17,11 +17,11 @@
     }
     public class Details
     {
-        public double Air_pressure_at_sea_level { get; set; }
-        public double Air_temperature { get; set; }
-        public double Relative_humidity { get; set; }
-        public double Wind_from_direction { get; set; }
-        public double Wind_speed { get; set; }
+        public float Air_pressure_at_sea_level { get; set; }
+        public float Air_temperature { get; set; }
+        public float Relative_humidity { get; set; }
+        public float Wind_from_direction { get; set; }
+        public float Wind_speed { get; set; }
     }
 
 }
