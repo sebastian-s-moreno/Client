@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "{handler?}"
 @model IndexModel
 @{
     ViewData["Title"] = "Recommendation page";
@@ -19,7 +19,7 @@
         <div class="col">
         <div class="button">
             <label for="@activity">
-                <input type="radio" asp-for="Activity" id="@activity" value="@activity" style="margin-right:5%;margin-bottom:10%;vertical-align: baseline"/>@activity<br/>
+                <input type="radio" name="activity" asp-for="Activity" id="@activity" value="@activity" style="margin-right:5%;margin-bottom:10%;vertical-align: baseline"/>@activity<br/>
                 <img src="~/images/@(activity).png" width="150" height="180" id="image-@activity">
             </label>
         </div>
@@ -28,10 +28,13 @@
         </div>
 </form>
 <row>
-    <button class="btn btn-primary" type="submit" form="recommendation-form" value="Submit" style="margin-top:5%">Get recommendation</button>
+    <button class="btn btn-primary recommmendations" type="button" form="recommendation-form" value="Submit" style="margin-top:5%">Get recommendation</button>
 </row>
 
 </div>
+
+<div class="recommendation"></div>
+
 @section scripts{
     <script>
         document.getElementById('getstuff').addEventListener('click', () => {
@@ -46,6 +49,14 @@
               }
             });
             console.log("Test1");
+        });
+    </script>
+
+   <script>
+        $(function () {
+            $('button.recommmendations').on('click', function () {
+                $('.recommendation').load(`/Index/RecommendedLocation?choice=${$('input[name="activity"]:checked').val()}`);
+            });
         });
     </script>
 }
