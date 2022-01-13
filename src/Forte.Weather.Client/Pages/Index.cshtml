@@ -19,7 +19,7 @@
         <div class="col">
         <div class="button">
             <label for="@activity">
-                <input type="radio" asp-for="Activity" id="@activity" value="@activity" style="margin-right:5%;margin-bottom:10%;vertical-align: baseline"/>@activity<br/>
+                <input type="radio" name="activity" asp-for="Activity" id="@activity" value="@activity" style="margin-right:5%;margin-bottom:10%;vertical-align: baseline"/>@activity<br/>
                 <img src="~/images/@(activity).png" width="150" height="180" id="image-@activity">
             </label>
         </div>
@@ -28,7 +28,7 @@
         </div>
 </form>
 <row>
-    <button class="btn btn-primary" type="button" form="recommendation-form" value="Submit" style="margin-top:5%">Get recommendation</button>
+    <button class="btn btn-primary recommmendations" type="button" form="recommendation-form" value="Submit" style="margin-top:5%">Get recommendation</button>
 </row>
 
 </div>
