@@ -18,7 +18,10 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
 });
 
 // Add services to the container.
-builder.Services.AddRazorPages().AddViewLocalization();
+builder.Services.AddRazorPages(options =>
+{
+    options.Conventions.AddPageRoute("/Locations", "/");
+}).AddViewLocalization();
 
 var app = builder.Build();
 

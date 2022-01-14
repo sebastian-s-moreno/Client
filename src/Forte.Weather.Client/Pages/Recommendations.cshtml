@@ -55,7 +55,7 @@
    <script>
         $(function () {
             $('button.recommmendations').on('click', function () {
-                $('.recommendation').load(`/Index/RecommendedLocation?choice=${$('input[name="activity"]:checked').val()}`);
+                $('.recommendation').load(`/Recommendations/RecommendedLocation?choice=${$('input[name="activity"]:checked').val()}`);
             });
         });
     </script>
