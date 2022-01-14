@@ -8,6 +8,8 @@ namespace Forte.Weather.Client.Pages
     {
         [BindProperty]
         public Location Input { get; set; }
+        [BindProperty]
+        public int Id { get; set; }
         public List<Location> Locations { get; set; }
 
         public LocationsModel()
@@ -44,14 +46,19 @@ namespace Forte.Weather.Client.Pages
 
             return Redirect("/Locations");
         }
-        
+
+        public async Task<IActionResult> OnPostDelete(int Id)
+        {
+            using (var client = new HttpClient())
+            {
+                await client.PostAsJsonAsync("https://localhost:7179/api/weather/locations/delete", Id);
+            }
+
+            return Redirect("/Locations");
+        }
+
     }
 
-
-    public class Details
-    {
-
-    }
 
 
 
