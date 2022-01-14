@@ -38,13 +38,13 @@
 <script>
     $(function() {
         $('#fahrenheitSwitch').on('change', function (e) {
-            debugger;
-            var fahrenheit = (@Model.Data.Instant.Details.Air_temperature*1.8)+32;
+            var fahrenheit = ((@Model.Data.Instant.Details.Air_temperature*1.8)+32).toFixed(2);
             if (e.target.checked){
-                $('#air-temperature').text(fahrenheit + " Fahrenheit");
+                $('#air-temperature').text(fahrenheit +'\u2109');
             }
             else{
-                $('#air-temperature').text(@Model.Data.Instant.Details.Air_temperature + " Celcius");
+                $('#air-temperature').text(@Model.Data.Instant.Details.Air_temperature + '\u2103');
+                
             }
         });
     });

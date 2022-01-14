@@ -7,10 +7,6 @@
 
 <div class="text-center">
     <h1 class="display-4" style="margin-bottom:10%">Get recommendations</h1>
-    @*<a id="getstuff" class="btn btn-sm btn-primary"> Get recommendation </a>
-    <p id="text1" style="visibility: hidden">Recommended location today: </p>
-    <p id="text2" style="visibility: hidden"/>*@
-
 
 <form method="post" id="recommendation-form">
     <div class="row">
@@ -20,7 +16,7 @@
         <div class="button">
             <label for="@activity">
                 <input type="radio" name="activity" asp-for="Activity" id="@activity" value="@activity" style="margin-right:5%;margin-bottom:10%;vertical-align: baseline"/>@activity<br/>
-                <img src="~/images/@(activity).png" width="150" height="180" id="image-@activity">
+                <img src="~/images/@(activity).png" width="150" height="150" id="image-@activity">
             </label>
         </div>
         </div>
@@ -36,22 +32,6 @@
 <div class="recommendation"></div>
 
 @section scripts{
-    <script>
-        document.getElementById('getstuff').addEventListener('click', () => {
-            $.ajax({
-              url: "https://localhost:7179/api/weather/locations/recommended",
-              success: (response) => {
-                  console.log(response);
-                  document.getElementById('text1').style.visibility = "visible";
-                  var text2 = document.getElementById('text2');
-                  text2.style.visibility = "visible";
-                  text2.innerHTML = response.name;
-              }
-            });
-            console.log("Test1");
-        });
-    </script>
-
    <script>
         $(function () {
             $('button.recommmendations').on('click', function () {

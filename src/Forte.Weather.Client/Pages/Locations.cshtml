@@ -131,7 +131,6 @@
             $('button.details').on('click', function () {
                 $('#detailsBody').load(`/Locations/LocationDetails?lat=${$(this).data('lat')}&lon=${$(this).data('lon')}`);
                 $('.modal-title').text("Location Weather Details: " + $(this).data('city'));
-                debugger;
                 $('#detailsModal').modal('show');
             });
         });

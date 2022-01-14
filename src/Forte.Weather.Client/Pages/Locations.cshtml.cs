@@ -46,7 +46,7 @@ namespace Forte.Weather.Client.Pages
             return Redirect("/Locations");
         }
 
-        public async Task<IActionResult> OnPostDelete(int Id)
+        public async Task<IActionResult> OnPostDelete(string Id)
         {
             using (var client = new HttpClient())
             {
