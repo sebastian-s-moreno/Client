@@ -14,8 +14,8 @@
 <div class="container">
     <div class="row">
         <div class="col-7">
-            <div class="form-horizontal">
-                <div class="form-group">
+            <div class="form-horizontal" method="post">
+                <div class="form-group" method="post">
                     <table class="table table-responsive" style="width:600px;">
                             <tr>
                                 <th>Location</th>
@@ -35,8 +35,13 @@
                                     @Html.DisplayFor(modelItem => item.Longitude)
                                 </td>
                                 <td>
-                            <button class="btn btn-sm btn-dark details" data-id="@item.ID" data-city="@item.Name" data-lon="@item.Longitude" data-lat="@item.Latitude" data-toggle="modal" data-target="#detailsModal">Details</button>
-                        </td>
+                                <button class="btn btn-sm btn-dark details" data-id="@item.ID" data-city="@item.Name" data-lon="@item.Longitude" data-lat="@item.Latitude" data-toggle="modal" data-target="#detailsModal">Details</button>
+                                </td>
+                                <td>
+                                <form method="post">
+                                    <button class="btn btn-sm btn-dark delete" asp-page-handler="delete" asp-route-id="@item.ID" onclick="return confirm('Are you sure you want to delete?')">Delete</button>
+                                </form>
+                            </td>
                             </tr>
                         }
                     </table>
@@ -80,10 +85,6 @@
         </div>
     </div>
 </div>
-<div>
-    <iframe width="970" height="506" src="https://www.youtube.com/embed/j91bBwp9UXs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
-
 
 
 <div class="modal fade" tabindex="-1" role="dialog" id="detailsModal">
@@ -103,6 +104,7 @@
             $('button.details').on('click', function () {
                 $('.modal-body').load(`/Locations/LocationDetails?lat=${$(this).data('lat')}&lon=${$(this).data('lon')}`);
                 $('.modal-title').text("Location Weather Details: " + $(this).data('city'));
+                debugger;
                 $('#detailsModal').modal('show');
             });
         });
