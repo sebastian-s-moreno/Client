@@ -36,7 +36,6 @@ namespace Forte.Weather.Client.Pages
             }
             
         }
-
         public async Task<RedirectResult> OnPostAsync()
         {
             using (var client = new HttpClient())
@@ -57,6 +56,17 @@ namespace Forte.Weather.Client.Pages
             return Redirect("/Locations");
         }
 
+        public async Task<IActionResult> OnPostEdit(int Id)
+        {
+            using (var client = new HttpClient())
+            {
+                Input.ID = Id;
+                var element = $"{Id}";
+                await client.PutAsJsonAsync("https://localhost:7179/api/weather/locations/" + element, Input);
+            }
+
+            return Redirect("/Locations");
+        }
     }
 
 

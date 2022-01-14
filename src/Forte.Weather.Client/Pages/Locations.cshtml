@@ -41,7 +41,10 @@
                                 <form method="post">
                                     <button class="btn btn-sm btn-dark delete" asp-page-handler="delete" asp-route-id="@item.ID" onclick="return confirm('Are you sure you want to delete?')">Delete</button>
                                 </form>
-                            </td>
+                                </td>
+                                <td>
+                                    <button class="btn btn-sm btn-dark edit" data-id="@item.ID" data-city="@item.Name"  data-lon="@item.Longitude" data-lat="@item.Latitude" data-target="#editModal">Edit</button>
+                                </td>
                             </tr>
                         }
                     </table>
@@ -93,7 +96,31 @@
             <div class="modal-header">
                 <h5 class="modal-title">Location Weather Details: </h5>
             </div>
-            <div class="modal-body"></div>
+            <div class="modal-body" id="detailsBody"></div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="editModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit location: </h5>
+            </div>
+            <div class="modal-body">
+                <form method="post">
+                    <label for="name"> Name: </label>
+                    <input class="form-control" asp-for="Input.Name" id="name" maxlength="20" />
+                    <br/>
+                    <label> Latitude: </label>
+                    <input class="form-control" asp-for="Input.Latitude" id="lat" type="number" min="-90" max="90" step=0.01 required />
+                    <br/>
+                    <label> Longitude: </label>
+                    <td><input class="form-control" asp-for="Input.Longitude" id="lon" type="number" min="-180" max="80" step=0.01 required /></td>
+                    <br/>
+                    <button type="submit" id="putButton" class="btn btn-dark" asp-page-handler="edit" asp-route-id="" >Submit</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>
@@ -102,10 +129,24 @@
     <script>
         $(function () {
             $('button.details').on('click', function () {
-                $('.modal-body').load(`/Locations/LocationDetails?lat=${$(this).data('lat')}&lon=${$(this).data('lon')}`);
+                $('#detailsBody').load(`/Locations/LocationDetails?lat=${$(this).data('lat')}&lon=${$(this).data('lon')}`);
                 $('.modal-title').text("Location Weather Details: " + $(this).data('city'));
                 debugger;
                 $('#detailsModal').modal('show');
+            });
+        });
+    </script>
+
+    <script>
+        $(function () {
+            $('button.edit').on('click', function () {
+                $('.modal-body #name').val($(this).data('city'))
+                $('.modal-body #lat').val($(this).data('lat'))
+                $('.modal-body #lon').val($(this).data('lon'))
+                $('.modal-body #putButton').attr("asp-route-id", $(this).data('id'))
+                //$('.modal-body #putButton').asp-route-id($(this).data('id'))
+                $('.modal-title').text("Edit location: ");
+                $('#editModal').modal('show');
             });
         });
     </script>
