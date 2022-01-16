@@ -24,7 +24,7 @@ namespace Forte.Weather.Client.Pages
             {
                 try
                 {
-                    location = await client.GetFromJsonAsync<Location>("https://localhost:7179/api/weather/locations/recommended2?" + elements);
+                    location = await client.GetFromJsonAsync<Location>("https://localhost:7179/api/weather/locations/recommended?" + elements);
                 }
                 catch
                 {
