@@ -56,13 +56,11 @@ namespace Forte.Weather.Client.Pages
             return Redirect("/Locations");
         }
 
-        public async Task<IActionResult> OnPostEdit(int Id)
+        public async Task<IActionResult> OnPostEdit()
         {
             using (var client = new HttpClient())
             {
-                Input.ID = Id;
-                var element = $"{Id}";
-                await client.PutAsJsonAsync("https://localhost:7179/api/weather/locations/" + element, Input);
+                await client.PutAsJsonAsync("https://localhost:7179/api/weather/locations/" + Input.ID, Input);
             }
 
             return Redirect("/Locations");
