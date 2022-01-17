@@ -22,14 +22,16 @@ Verify that you can not submit.
 
 2. Start with an empty Location table and test the Get Recommendation functionality. Verify that an error message is shown. 
 
+
 ## CRUD-operations in the list
 1. Verify that when you click the delete button for an entry in the table, the element is deleted. 
-2. Verify 
+2. Verify that you can update an entry by clicking the Edit-button. Try both with valid and invalid data. The updated entry should immidiately be seen in the table. 
 
-
+## Toggle button 
+1. Verify that when you go to the Details page, you can correctly toggle back and forth between Celcius and Fahrenheit. 
 
 ## External links
 1. Verify that when you click on external links (ex: www.latlong.net in the Locations page), you are redirected to the expected page. 
 
 ## Images 
-1. 
+1. One way to perform testing of images is to do a visual comparison (https://playwright.dev/docs/test-snapshots). Do this for the Recommendations page to verify that all the images is loaded correctly. 
