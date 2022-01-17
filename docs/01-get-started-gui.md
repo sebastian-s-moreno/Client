@@ -42,9 +42,9 @@ In this session, you will instal Node.js, playwright and code editor.
 3. Click Advanced system settings.
 4. Make sure you're on the Advanced tab
 5. Click Environment Variables
-6. Under the “System Variables” section (the lower half), find the row with “Path” in the first column, and click edit
-7. The “Edit environment variable” UI will appear. Here, you can click “New” and type in the new path you want to add. 
-8. Dismiss all of the dialogs by choosing “OK”. Your changes are saved!
+6. Under the â€œSystem Variablesâ€ section (the lower half), find the row with â€œPathâ€ in the first column, and click edit
+7. The â€œEdit environment variableâ€ UI will appear. Here, you can click â€œNewâ€ and type in the new path you want to add. 
+8. Dismiss all of the dialogs by choosing â€œOKâ€. Your changes are saved!
 9. You will probably need to restart apps for them to pick up the change. Restarting the machine would ensure all apps are run with the PATH change.
 
  
