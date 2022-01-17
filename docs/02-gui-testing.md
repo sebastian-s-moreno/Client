@@ -1,5 +1,5 @@
 # Gui testing
-In this session, you will use Playwright to perform end-to-end GUI testing. 
+In this session, you will use Playwright to perform end-to-end GUI testing. You can find the documentation for Playwright here: https://playwright.dev/docs/intro. Use this to find different ways to solve the following tasks. 
 
 ## Create your first Playwright script
 
@@ -20,7 +20,7 @@ Verify that you can not submit.
 ## Buttons 
 1. Test the Recommendations-page by choosing an activity by radio buttons, and push Get Recommendations. 
 
-2. Delete all Location-entries from the table and test the Get Recommendation functionality. Verify that an error message is shown. 
+2. Start with an empty Location table and test the Get Recommendation functionality. Verify that an error message is shown. 
 
 ## CRUD-operations in the list
 1. Verify that when you click the delete button for an entry in the table, the element is deleted. 
@@ -29,7 +29,7 @@ Verify that you can not submit.
 
 
 ## External links
-1. Verify that when you click on external links, you are redirected to the expected page. 
+1. Verify that when you click on external links (ex: www.latlong.net in the Locations page), you are redirected to the expected page. 
 
 ## Images 
 1. 
