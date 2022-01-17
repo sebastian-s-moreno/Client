@@ -5,7 +5,7 @@ In this session, you will use Playwright to perform end-to-end GUI testing. You 
 
 
 ## Navigation Bar
-1. Test the different pages in the navigation bar, and verify that the correct URL is loaded. 
+1. Test the different pages in the navigation bar, and verify that the correct URL is loaded. At the same time, verify that the heading in each page is correct.
 
 ## Forms
 1. Fill out form with valid data and click submit. Verify that an entry has been created and is shown with the correct data in the table. 
