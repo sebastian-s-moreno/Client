@@ -1,7 +1,7 @@
 # Gui testing
 In this session, you will use Playwright to perform end-to-end GUI testing. 
 
-## Create your first Playwright script (Forecast 2050)
+## Create your first Playwright script
 
 
 ## Navigation Bar
@@ -20,12 +20,16 @@ Verify that you can not submit.
 ## Buttons 
 1. Test the Recommendations-page by choosing an activity by radio buttons, and push Get Recommendations. 
 
-2. Delete all Location-entries from the table and test the Get Recommendation functionality. 
+2. Delete all Location-entries from the table and test the Get Recommendation functionality. Verify that an error message is shown. 
 
 ## CRUD-operations in the list
-Create, Read, Update, Delete. 
+1. Verify that when you click the delete button for an entry in the table, the element is deleted. 
+2. Verify 
+
 
 
 ## External links
+1. Verify that when you click on external links, you are redirected to the expected page. 
 
 ## Images 
+1. 
