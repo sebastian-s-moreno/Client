@@ -22,7 +22,7 @@ Verify that you can not submit.
 
 2. Start with an empty Location table and test the Get Recommendation functionality. Verify that an error message is shown. 
 
-3. Test the functionality of the Details button, and verify that the displayed text is correct. Examples of things to test: 
+3. Test the functionality of the Details button, and verify that the displayed text is correct. Some examples of tests to perform: 
 - The header should have the correct location name
 - The date should be today's date
 - The different fields all have a value and a unit. 
