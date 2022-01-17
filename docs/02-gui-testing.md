@@ -22,8 +22,13 @@ Verify that you can not submit.
 
 2. Start with an empty Location table and test the Get Recommendation functionality. Verify that an error message is shown. 
 
+3. Test the functionality of the Details button, and verify that the displayed text is correct. Examples of things to test: 
+- The header should have the correct location name
+- The date should be today's date
+- The different fields all have a value and a unit. 
 
-## CRUD-operations in the list
+## CRUD-Operations
+When you tested the form, you verified that the two CRUD-operations, Create and Read, worked as expected. Now, you will test the two remaining operations: Update and Delete. 
 1. Verify that when you click the delete button for an entry in the table, the element is deleted. 
 2. Verify that you can update an entry by clicking the Edit-button. Try both with valid and invalid data. The updated entry should immidiately be seen in the table. 
 
