@@ -26,7 +26,6 @@ Exercises 1 and 2 have some prerequisites. Namely that the Location table is alr
 - The header should have the correct location name
 - You can correctly toggle back and forth between Celcius and Fahrenheit. 
 - The date should be today's date
-- The different fields all have a value and a unit. 
 
 ## CRUD-Operations
 When you tested the form, you verified that the two CRUD-operations, Create and Read, worked as expected. Now, you will test the two remaining operations: Update and Delete. 
