@@ -1,6 +1,8 @@
 # Gui testing - continuation
 In this session, you will use Playwright to perform end-to-end GUI testing. You can find the documentation for Playwright here: https://playwright.dev/docs/intro. Use this to find different ways to solve the following tasks. 
 
+Try your best to solve the tasks by the help of Playwright Codegenerator and reading the docs. When you need help, take a look at the suggested solutions in XXXXXX. 
+
 ## Navigation Bar
 1. Test the different pages in the navigation bar, and verify that the correct URL is loaded. At the same time, verify that the heading in each page is correct.
 
