@@ -85,3 +85,7 @@ This script will verify
 - That there is a clickable play button in the iframe
 - That the name of the video in the iframe is what we expect
 
+
+
+
+Now, you will be using what you learned to solve some tasks by yourself. Next up - [More GUI testing](02-more-gui-testing.md)
