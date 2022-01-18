@@ -26,14 +26,12 @@ Exercises 1 and 2 have some prerequisites. Namely that the Location table is alr
 - The header should have the correct location name
 - The date should be today's date
 - The different fields all have a value and a unit. 
+- You can correctly toggle back and forth between Celcius and Fahrenheit. 
 
 ## CRUD-Operations
 When you tested the form, you verified that the two CRUD-operations, Create and Read, worked as expected. Now, you will test the two remaining operations: Update and Delete. 
 1. Verify that when you click the delete button for an entry in the table, the element is deleted. 
 2. Verify that you can update an entry by clicking the Edit-button. Try both with valid and invalid data. The updated entry should immidiately be seen in the table. 
-
-## Toggle button 
-1. Verify that when you go to the Details page, you can correctly toggle back and forth between Celcius and Fahrenheit. 
 
 ## External links
 1. Verify that when you click on external links (ex: www.latlong.net in the Locations page), you are redirected to the expected page. 
