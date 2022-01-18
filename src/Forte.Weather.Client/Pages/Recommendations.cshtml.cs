@@ -18,6 +18,13 @@ namespace Forte.Weather.Client.Pages
 
         public async Task<PartialViewResult> OnGetRecommendedLocation(string choice)
         {
+            if(choice.Equals("undefined"))
+            {
+                Error err = new Error();
+                err.Message = "You must choose an activity before you can get a recommendation!";
+                return Partial("_Error", err);
+            }
+
             Location? location = null;
             var elements = $"preference={choice}";
             using (var client = new HttpClient())
@@ -38,7 +45,7 @@ namespace Forte.Weather.Client.Pages
             else {
                 Error err = new Error();
                 err.Message = "There are no locations in the database";
-                return Partial("_Error", err); //Returner feilmelding og si at man må legge til locations
+                return Partial("_Error", err);
             }
 
         }

@@ -9,7 +9,6 @@ namespace Forte.Weather.Client.Pages
         [BindProperty]
         public Location Input { get; set; }
         [BindProperty]
-        public int Id { get; set; }
         public List<Location> Locations { get; set; }
 
         public LocationsModel()
@@ -26,9 +25,9 @@ namespace Forte.Weather.Client.Pages
                 Locations = response;
             }
         }
-        public async Task<PartialViewResult> OnGetLocationDetailsAsync(double lon, double lat)
+        public async Task<PartialViewResult> OnGetLocationDetailsAsync(string id)
         {
-            var elements = $"lat={lat}&lon={lon}";
+            var elements = $"id={id}";
             using (var client = new HttpClient())
             {
                 var response = await client.GetFromJsonAsync<LocationDetails>("https://localhost:7179/api/weather/locations/details?" + elements);
@@ -36,8 +35,13 @@ namespace Forte.Weather.Client.Pages
             }
             
         }
-        public async Task<RedirectResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync()
         {
+            if (!ModelState.IsValid)
+            {
+                await OnGetAsync();
+                return Page();
+            }
             using (var client = new HttpClient())
             {
                 await client.PostAsJsonAsync("https://localhost:7179/api/weather/locations", Input);

@@ -5,7 +5,7 @@
 
 <div class="text-center">
     <div style="display: flex; justify-content: center; align-items: center;">
-        <h1 class="display-4" style=" display: inline-block">Locations</h1>
+        <h1 class="display-4 loc-header" style=" display: inline-block">Locations</h1>
         <img src="https://cdn0.iconfinder.com/data/icons/octicons/1024/globe-512.png" style=" max-width:7%; height: auto;"/>
     </div>
     <hr />
@@ -24,7 +24,7 @@
                             </tr>
                         @foreach (var item in Model.Locations)
                         {
-                            <tr>
+                            <tr class=loc-table-row>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Name)
                                 </td>
@@ -35,7 +35,7 @@
                                     @Html.DisplayFor(modelItem => item.Longitude)
                                 </td>
                                 <td>
-                                <button class="btn btn-sm btn-dark details" data-id="@item.ID" data-city="@item.Name" data-lon="@item.Longitude" data-lat="@item.Latitude" data-toggle="modal" data-target="#detailsModal">Details</button>
+                                <button class="btn btn-sm btn-dark details" data-id="@item.ID" data-city="@item.Name" data-toggle="modal" data-target="#detailsModal">Details</button>
                                 </td>
                                 <td>
                                 <form method="post">
@@ -67,21 +67,24 @@
                         <div class="col-8">
                             <label for="name"> Name: </label>
                             <input class="form-control" asp-for="Input.Name" id="name" maxlength="20" />
+                            <span asp-validation-for="Input.Name" class="text-danger" style="font-size:x-small"></span>
                         </div>
                     </div>
                     <div class="row justify-content-center">
                         <div class="col-4">
                             <label> Latitude: </label>
-                            <input class="form-control" asp-for="Input.Latitude" id="lat" type="number" min="-90" max="90" step=0.01 required />
+                            <input class="form-control" asp-for="Input.Latitude" id="lat" type="number" />
+                            <span asp-validation-for="Input.Latitude" class="text-danger" style="font-size:x-small"></span>
                         </div>
                         <div class="col-4">
                             <label> Longitude: </label>
-                            <td><input class="form-control" asp-for="Input.Longitude" id="long" type="number" min="-180" max="80" step=0.01 required /></td>
+                            <td><input class="form-control" asp-for="Input.Longitude" id="long" type="number" /></td>
+                            <span asp-validation-for="Input.Longitude" class="text-danger" style="font-size:x-small"></span>
                         </div>
                     </div>
                     <br />
                     <div class="d-flex justify-content-center">
-                        <button type="submit" class="btn btn-dark">Submit</button>
+                        <button type="submit" class="btn btn-dark submit">Submit</button>
                     </div>
                 </form>
             </div>
@@ -130,12 +133,13 @@
     <script>
         $(function () {
             $('button.details').on('click', function () {
-                $('#detailsBody').load(`/Locations/LocationDetails?lat=${$(this).data('lat')}&lon=${$(this).data('lon')}`);
+                $('#detailsBody').load(`/Locations/LocationDetails?id=${$(this).data('id')}`);
                 $('.modal-title').text("Location Weather Details: " + $(this).data('city'));
                 $('#detailsModal').modal('show');
             });
         });
     </script>
+    
 
     <script>
         $(function () {
