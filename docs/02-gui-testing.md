@@ -88,4 +88,4 @@ This script will verify
 
 
 
-Now, you will be using what you learned to solve some tasks by yourself. Next up - [More GUI testing](02-more-gui-testing.md)
+Now, you will be using what you learned to solve some tasks by yourself. Next up - [More GUI testing](03-more-gui-testing.md)
