@@ -17,8 +17,9 @@ Verify that you can not submit.
 
 
 ## Buttons 
-1. Test the Recommendations-page by choosing an activity by radio buttons, and push Get Recommendations. 
+Exercises 1 and 2 have some prerequisites. Namely that the Location table is already filled with data or that it is empty. Ensuring this increases the complexity of the tests. If you have time, you can try to include this in your tests, if not, solve the exercises and assume that the prerequisites are met.
 
+1. Test the Recommendations-page by choosing an activity by radio buttons, and push Get Recommendations. 
 2. Start with an empty Location table and test the Get Recommendation functionality. Verify that an error message is shown. 
 
 3. Test the functionality of the Details button, and verify that the displayed text is correct. Some examples of tests to perform: 
