@@ -97,7 +97,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Location Weather Details: </h5>
+                <h5 class="modal-title-details">Location Weather Details: </h5>
             </div>
             <div class="modal-body" id="detailsBody"></div>
         </div>
@@ -108,7 +108,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Edit location: </h5>
+                <h5 class="modal-title-edit">Edit location: </h5>
             </div>
             <div class="modal-body">
                 <form method="post">
@@ -134,7 +134,7 @@
         $(function () {
             $('button.details').on('click', function () {
                 $('#detailsBody').load(`/Locations/LocationDetails?id=${$(this).data('id')}`);
-                $('.modal-title').text("Location Weather Details: " + $(this).data('city'));
+                $('.modal-title-details').text("Location Weather Details: " + $(this).data('city'));
                 $('#detailsModal').modal('show');
             });
         });
@@ -148,7 +148,6 @@
                 $('.modal-body #lat').val($(this).data('lat'));
                 $('.modal-body #lon').val($(this).data('lon'));
                 $('.modal-body #id').val($(this).data('id'));
-                $('.modal-title').text("Edit location: ");
                 $('#editModal').modal('show');
             });
         });
