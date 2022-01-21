@@ -54,7 +54,7 @@ namespace Forte.Weather.Client.Pages
         {
             using (var client = new HttpClient())
             {
-                await client.PostAsJsonAsync("https://localhost:7179/api/weather/locations/delete", Id);
+                await client.DeleteAsync("https://localhost:7179/api/weather/locations/" + Id);
             }
 
             return Redirect("/Locations");
