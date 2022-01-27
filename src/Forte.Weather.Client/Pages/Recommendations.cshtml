@@ -1,0 +1,42 @@
+﻿@page "{handler?}"
+@model IndexModel
+@{
+    ViewData["Title"] = "Recommendation page";
+}
+
+
+<div class="text-center">
+    <h1 class="display-4 rec-header" style="margin-bottom:10%">Get recommendations</h1>
+
+<form method="post" id="recommendation-form">
+    <div class="row">
+    @foreach (var activity in Model.Activities)
+    {
+        <div class="col">
+        <div class="button">
+            <label for="@activity">
+                <input type="radio" name="activity" asp-for="Activity" id="@activity" value="@activity" style="margin-right:5%;margin-bottom:10%;vertical-align: baseline"/>@activity<br/>
+                <img src="~/images/@(activity).png" width="150" height="150" id="image-@activity">
+            </label>
+        </div>
+        </div>
+    }
+        </div>
+</form>
+<row>
+    <button class="btn btn-primary recommmendations" type="button" form="recommendation-form" value="Submit" style="margin-top:5%">Get recommendation</button>
+</row>
+
+</div>
+
+<div class="recommendation"></div>
+
+@section scripts{
+   <script>
+        $(function () {
+            $('button.recommmendations').on('click', function () {
+                $('.recommendation').load(`/Recommendations/RecommendedLocation?choice=${$('input[name="activity"]:checked').val()}`);
+            });
+        });
+    </script>
+}

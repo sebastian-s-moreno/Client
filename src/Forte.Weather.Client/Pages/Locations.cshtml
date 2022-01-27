@@ -1,46 +1,156 @@
-﻿@page
+﻿@page "{handler?}"
 @model Forte.Weather.Client.Pages.LocationsModel
 @{
-}
+}   
 
 <div class="text-center">
-    <h1 class="display-4">Locations</h1>
-    <div class="form-horizontal">
-        <hr />
-        <div class="form-group">
-            <table class="table table-responsive" style="width:400px">
-                <tr>
-                    <th>Location</th>
-                    <th>Longitude</th>
-                    <th>Latitude</th>
-                </tr>
-                @foreach (var item in Model.Locations) {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Longitude)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Latitude)
-                        </td>
-                    </tr>
-                }
-            </table>
+    <div style="display: flex; justify-content: center; align-items: center;">
+        <h1 class="display-4 loc-header" style=" display: inline-block">Locations</h1>
+        <img src="https://cdn0.iconfinder.com/data/icons/octicons/1024/globe-512.png" style=" max-width:7%; height: auto;"/>
+    </div>
+    <hr />
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-7">
+            <div class="form-horizontal" method="post">
+                <div class="form-group" method="post">
+                    <table class="table table-responsive" style="width:600px;">
+                            <tr>
+                                <th>Location</th>
+                                <th>Latitude</th>
+                                <th>Longitude</th>
+                            </tr>
+                        @foreach (var item in Model.Locations)
+                        {
+                            <tr class=loc-table-row>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Latitude)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Longitude)
+                                </td>
+                                <td>
+                                <button class="btn btn-sm btn-dark details" data-id="@item.ID" data-city="@item.Name" data-toggle="modal" data-target="#detailsModal">Details</button>
+                                </td>
+                                <td>
+                                <form method="post">
+                                    <button class="btn btn-sm btn-dark delete" asp-page-handler="delete" asp-route-id="@item.ID" onclick="return confirm('Are you sure you want to delete?')">Delete</button>
+                                </form>
+                                </td>
+                                <td>
+                                    <button class="btn btn-sm btn-dark edit" data-id="@item.ID" data-city="@item.Name"  data-lon="@item.Longitude" data-lat="@item.Latitude" data-target="#editModal">Edit</button>
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-1">
+        <div class="vl" style="border-left: 3px solid black; height: 300px;margin-left:50%"></div>
+        </div>
+        <div class="col-4">
+            <div class="container">
+                <form method="post">
+                    <div class="row justify-content-center">
+                        <div class="col-8">
+                        <h4>Add new location: </h4>
+                        <span class="text-center" style="font-size: small">If you are unsure about the coordinates of your place, use: <a href="https://www.latlong.net">www.latlong.net</a>!</span>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-8">
+                            <label for="name"> Name: </label>
+                            <input class="form-control" asp-for="Input.Name" id="name" maxlength="20" />
+                            <span asp-validation-for="Input.Name" class="text-danger" style="font-size:x-small"></span>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-4">
+                            <label> Latitude: </label>
+                            <input class="form-control" asp-for="Input.Latitude" id="lat" type="number" />
+                            <span asp-validation-for="Input.Latitude" class="text-danger" style="font-size:x-small"></span>
+                        </div>
+                        <div class="col-4">
+                            <label> Longitude: </label>
+                            <td><input class="form-control" asp-for="Input.Longitude" id="long" type="number" /></td>
+                            <span asp-validation-for="Input.Longitude" class="text-danger" style="font-size:x-small"></span>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-dark submit">Submit</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-
-    <form method="post">
-        Name:
-        <input asp-for="Input.Name" />
-        <br />
-        Latitude:
-        <input asp-for="Input.Latitude" />
-        <br />
-        Longitude:
-        <input asp-for="Input.Longitude" />
-        <br />
-        <input type="submit" />
-    </form>
 </div>
+
+
+<div class="modal fade" tabindex="-1" role="dialog" id="detailsModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title-details">Location Weather Details: </h5>
+            </div>
+            <div class="modal-body" id="detailsBody"></div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="editModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title-edit">Edit location: </h5>
+            </div>
+            <div class="modal-body">
+                <form method="post">
+                    <label for="name"> Name: </label>
+                    <input class="form-control" id="id" type="hidden" asp-for="Input.ID" />
+                    <input class="form-control" asp-for="Input.Name" id="name" maxlength="20" />
+                    <br/>
+                    <label> Latitude: </label>
+                    <input class="form-control" asp-for="Input.Latitude" id="lat" type="number" min="-90" max="90" step=0.01 required />
+                    <br/>
+                    <label> Longitude: </label>
+                    <td><input class="form-control" asp-for="Input.Longitude" id="lon" type="number" min="-180" max="80" step=0.01 required /></td>
+                    <br/>
+                    <button type="submit" id="editButton" class="btn btn-dark" asp-page-handler="edit" >Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $(function () {
+            $('button.details').on('click', function () {
+                $('#detailsBody').load(`/Locations/LocationDetails?id=${$(this).data('id')}`);
+                $('.modal-title-details').text("Location Weather Details: " + $(this).data('city'));
+                $('#detailsModal').modal('show');
+            });
+        });
+    </script>
+    
+
+    <script>
+        $(function () {
+            $('button.edit').on('click', function () {
+                $('.modal-body #name').val($(this).data('city'));
+                $('.modal-body #lat').val($(this).data('lat'));
+                $('.modal-body #lon').val($(this).data('lon'));
+                $('.modal-body #id').val($(this).data('id'));
+                $('#editModal').modal('show');
+            });
+        });
+    </script>
+}
+
